@@ -4,6 +4,7 @@ using CryptoTechProject.Boundary;
 using CryptoTechProject.Domain;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using TimeZoneConverter;
 
 namespace CryptoTechProject.Tests
 {
@@ -69,12 +70,12 @@ namespace CryptoTechProject.Tests
 
             DateTime sourceDate = new DateTime(2019, 10, 18, 14, 00, 0);
             DateTimeOffset time = new DateTimeOffset(sourceDate,
-                TimeZoneInfo.FindSystemTimeZoneById("Europe/London").GetUtcOffset(sourceDate));
+                TZConvert.GetTimeZoneInfo("Europe/London").GetUtcOffset(sourceDate));
 
 
             DateTime sourceDate2 = new DateTime(2019, 10, 18, 15, 30, 0);
             DateTimeOffset time2 = new DateTimeOffset(sourceDate2,
-                TimeZoneInfo.FindSystemTimeZoneById("Europe/London").GetUtcOffset(sourceDate2));
+                TZConvert.GetTimeZoneInfo("Europe/London").GetUtcOffset(sourceDate2));
 
             PresentableWorkshop[] presentableWorkshops = response.PresentableWorkshops;
 

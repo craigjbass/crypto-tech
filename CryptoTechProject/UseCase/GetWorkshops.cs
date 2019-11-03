@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using CryptoTechProject.Boundary;
 using Newtonsoft.Json.Linq;
+using TimeZoneConverter;
 
 namespace CryptoTechProject
 {
@@ -36,8 +37,9 @@ namespace CryptoTechProject
                     Name = list[i].name,
                     Host = list[i].host,
                     // Time = list[i].time.ToLocalTime(),
-                    Time = new DateTimeOffset(list[i].time, TimeSpan.Zero).ToOffset(TimeZoneInfo
-                        .FindSystemTimeZoneById("GMT Standard Time").GetUtcOffset(list[i].time)),
+                    Time = new DateTimeOffset(list[i].time, TimeSpan.Zero).ToOffset(
+                        TZConvert.GetTimeZoneInfo("Europe/London").GetUtcOffset(list[i].time)
+                    ),
                     Location = list[i].location,
                     Duration = list[i].duration,
                     Type = list[i].type,
